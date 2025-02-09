@@ -88,3 +88,76 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  }
+
+body {
+  background-color: #271C36;
+  color: #FFF;
+}
+
+.app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.quiz {
+  background-color: #382a4b;
+  padding: 1rem;
+  width: 100%;
+  max-width: 640px;
+  border-radius: 0.5rem;
+}
+
+.quiz-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.quiz-info .question {
+  color: #8F8F8F;
+  font-size: 1.25rem;
+}
+
+.quiz-info .score {
+  color: #FFF;
+  font-size: 1.25rem;
+}
+
+.options {
+  margin-bottom: 1rem;
+}
+
+.option {
+  display: block;
+  padding: 1rem;
+  background-color: #271C36;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.option:hover {
+  background-color: #2d213f;
+}
+
+.option.correct {
+  background-color: #2cce7d;
+}
+
+.option.wrong {
+  background-color: #ff5a5f;
+}

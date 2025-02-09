@@ -1,22 +1,27 @@
 <script setup>
 import { ref, computed } from 'vue'
+import '../style.css'
 
 const questions = ref([
   {
-    question: 'What',
-    answer: 0,
+    question: 'Which country won the FIFA World Cup in 2018?',
+    answer: 2,
     options: [
-      'asdfjaskd',
-      'asdfoaisdj'
+      'Brazil',
+      'Germany',
+      'France',
+      'Argentina'
     ],
     selected: null
   },
   {
-    question: 'Why',
+    question: 'Who has won the most Ballon d\'Or awards?',
     answer: 1,
     options: [
-      '1',
-      '2'
+      'Cristiano Ronaldo',
+      'Lionel Messi',
+      'Diego Maradona',
+      'Pele'
     ],
     selected: null
   }
@@ -54,11 +59,23 @@ const NextQuestion = () => {
   }
 }
 
+const restartGame = () => {
+  // Reset game state
+  quizCompleted.value = false
+  currentQuestion.value = 0
+  questions.value.forEach(q => {
+    q.selected = null
+  })
+  // Emit event to restart game in App.vue
+  emit('restartGame')
+}
+
 </script>
 
 <template>
   <main class = "app">
-    <h1>The Quiz</h1>
+  <div class="quiz">
+  <h1>The Football Quiz</h1>
 
     <section class = "quiz" v-if = "!quizCompleted">
       <div class="quiz-info">
@@ -109,81 +126,9 @@ const NextQuestion = () => {
     <section v-else>
       <h2>Finish the quiz!</h2>
       <p>Your score is : {{ score }}/{{ questions.length }}</p>
+      <button @click="restartGame">Restart Game</button>
     </section>
+  </div>
   </main>
 </template>
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    }
-
-  body {
-    background-color: #271C36;
-    color: #FFF;
-  }
-
-  .app{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    min-height: 100vh;
-  }
-
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .quiz {
-    background-color: #382a4b;
-    padding: 1rem;
-    width: 100%;
-    max-width: 640px;
-    border-radius: 0.5rem;
-  }
-
-  .quiz-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-
-  .quiz-info .question {
-    color: #8F8F8F;
-    font-size: 1.25rem;
-  }
-
-  .quiz-info .score {
-    color: #FFF;
-    font-size: 1.25rem;
-  }
-
-  .options {
-    margin-bottom: 1rem;
-  }
-
-  .option {
-    display: block;
-    padding: 1rem;
-    background-color: #271C36;
-    margin-bottom: 0.5rem;
-    border-radius: 0.5rem;
-  }
-
-  .option:hover {
-    background-color: #2d213f;
-  }
-
-  .option.correct {
-    background-color: #2cce7d;
-  }
-
-  .option.wrong {
-    background-color: #ff5a5f;
-  }
-</style>
